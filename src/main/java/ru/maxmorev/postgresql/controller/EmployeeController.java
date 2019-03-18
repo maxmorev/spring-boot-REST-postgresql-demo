@@ -1,4 +1,4 @@
-package ru.maxmorev.postgresql.repository;
+package ru.maxmorev.postgresql.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.maxmorev.postgresql.model.Employee;
 import ru.maxmorev.postgresql.model.EmployeeList;
+import ru.maxmorev.postgresql.repository.EmployeeRepository;
 
 import java.util.Optional;
 
