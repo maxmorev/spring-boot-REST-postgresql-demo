@@ -18,7 +18,7 @@ public class Departament {
 
     private String name;
 
-    @OneToMany(mappedBy = "departamentId", targetEntity=Employee.class)
+    @OneToMany(mappedBy = "departamentId", targetEntity=Employee.class, fetch = FetchType.LAZY)
     @JsonIgnore
     private Set<Employee> employeeSet;
 

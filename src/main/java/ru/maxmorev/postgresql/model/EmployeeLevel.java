@@ -18,7 +18,7 @@ public class EmployeeLevel {
 
     private String name;
 
-    @OneToMany(mappedBy = "employeeLevelId", targetEntity=Employee.class)
+    @OneToMany(mappedBy = "employeeLevelId", targetEntity=Employee.class, fetch = FetchType.LAZY)
     @JsonIgnore
     private Set<Employee> employeeSet;
 

@@ -12,6 +12,8 @@ import org.springframework.data.domain.Sort;
 import ru.maxmorev.postgresql.model.Employee;
 import ru.maxmorev.postgresql.repository.EmployeeRepository;
 
+import java.util.Date;
+
 @SpringBootApplication
 public class Application {
 
@@ -30,7 +32,8 @@ public class Application {
             //employeeRepository.save(new Employee("Vika2", 1L, 1L));
             //employeeRepository.save(new Employee("Vika", 1L, 1L));
             //employeeRepository.save(new Employee("Navi", 2L, 2L));
-
+            Employee newEmployee = Employee.getBuilder("Builder "+ new Date().getTime(), 1L, 2L).build();
+            employeeRepository.save(newEmployee);
             // fetch all customers
             log.info("Employees found with findAll():");
 
@@ -49,10 +52,12 @@ public class Application {
             log.info("");
 
             // fetch customers by last name
-            log.info("Employee found with findByName('Vika'):");
+            log.info("Employee found with findByName('Vladled'):");
             log.info("--------------------------------------------");
-            employeeRepository.findByName("Vika").forEach(employee -> {
+            employeeRepository.findByName("Vladled").forEach(employee -> {
                 log.info(employee.toString());
+                employee.setName("Metallica");
+                employeeRepository.save(employee);
             });
         };
     }

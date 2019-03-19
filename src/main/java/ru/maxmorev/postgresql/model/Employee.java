@@ -27,14 +27,6 @@ public class Employee {
     @JoinColumn(name="employeeLevelId", referencedColumnName="id", insertable=false, updatable=false)
     private EmployeeLevel employeeLevel;
 
-    protected Employee(){super();}
-
-    public Employee(String name, Long departamendId, Long employeeLevelId){
-        this.name = name;
-        this.departamentId = departamendId;
-        this.employeeLevelId = employeeLevelId;
-    }
-
     public Departament getDepartament() {
         return departament;
     }
@@ -112,4 +104,45 @@ public class Employee {
         }
         return jsonStr;
     }
+
+
+    /**
+     *  Gets a builder which is used to create Employee objects.
+     * @param name
+     * @param departamentId
+     * @param employeeLevelId
+     * @return
+     */
+    public static Builder getBuilder(String name, Long departamentId, Long employeeLevelId) {
+        return new Builder(name, departamentId, employeeLevelId);
+    }
+
+    /**
+     * A Builder class used to create new Employee objects.
+     */
+    public static class Builder {
+        Employee built;
+
+        /**
+         *  Creates a new Builder instance.
+         * @param name
+         * @param departamentId
+         * @param employeeLevelId
+         */
+        Builder(String name, Long departamentId, Long employeeLevelId) {
+            built = new Employee();
+            built.name = name;
+            built.departamentId = departamentId;
+            built.employeeLevelId = employeeLevelId;
+        }
+
+        /**
+         * Builds the new Person object.
+         * @return  The created Person object.
+         */
+        public Employee build() {
+            return built;
+        }
+    }
+
 }
