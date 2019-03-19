@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity(name = "employee")
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -26,10 +27,8 @@ public class Employee {
     @JoinColumn(name="employeeLevelId", referencedColumnName="id", insertable=false, updatable=false)
     private EmployeeLevel employeeLevel;
 
+    protected Employee(){super();}
 
-    public Employee(){
-        super();
-    }
     public Employee(String name, Long departamendId, Long employeeLevelId){
         this.name = name;
         this.departamentId = departamendId;
@@ -82,6 +81,23 @@ public class Employee {
 
     public void setEmployeeLevelId(Long employeeLevelId) {
         this.employeeLevelId = employeeLevelId;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Employee employee = (Employee) o;
+        return id.equals(employee.id) &&
+                departamentId.equals(employee.departamentId) &&
+                employeeLevelId.equals(employee.employeeLevelId) &&
+                name.equals(employee.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, departamentId, employeeLevelId, name);
     }
 
     @Override

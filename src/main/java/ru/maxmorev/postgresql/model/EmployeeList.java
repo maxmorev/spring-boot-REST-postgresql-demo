@@ -4,23 +4,31 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.util.List;
-import java.util.Set;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class EmployeeList {
 
     //information about data
-    private long count; //count of data records
+    private long countOfTotalRecords; //countOfTotalRecords
+    private int countOfRecords;//records on page
     private int pageSize = 4; //pageSize - records by page
     private int page = 0;
     private List<Employee> employeeList;
 
-    public long getCount() {
-        return count;
+    public long getCountOfTotalRecords() {
+        return countOfTotalRecords;
     }
 
-    public void setCount(long count) {
-        this.count = count;
+    public void setCountOfTotalRecords(long countOfTotalRecords) {
+        this.countOfTotalRecords = countOfTotalRecords;
+    }
+
+    public int getCountOfRecords() {
+        return countOfRecords;
+    }
+
+    public void setCountOfRecords(int countOfRecords) {
+        this.countOfRecords = countOfRecords;
     }
 
     public List<Employee> getEmployeeList() {

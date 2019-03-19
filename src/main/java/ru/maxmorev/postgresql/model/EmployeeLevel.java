@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javax.persistence.*;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity(name = "employeelevel")
@@ -21,10 +22,8 @@ public class EmployeeLevel {
     @JsonIgnore
     private Set<Employee> employeeSet;
 
+    protected EmployeeLevel(){super();}
 
-    public EmployeeLevel(){
-        super();
-    }
     public EmployeeLevel(String name){
         this.name = name;
     }
@@ -51,6 +50,20 @@ public class EmployeeLevel {
 
     public void setEmployeeSet(Set<Employee> employeeSet) {
         this.employeeSet = employeeSet;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        EmployeeLevel that = (EmployeeLevel) o;
+        return id.equals(that.id) &&
+                name.equals(that.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name);
     }
 
     @Override
