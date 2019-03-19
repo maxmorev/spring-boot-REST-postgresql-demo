@@ -51,6 +51,22 @@ departamentId INTEGER REFERENCES departament(id),
 employeeLevelId INTEGER REFERENCES employeeLevel(id),
 name varchar(50) NOT NULL );
 
+INSERT INTO departament (name) VALUES ('java');
+INSERT INTO departament (name) VALUES ('hr');
+INSERT INTO departament (name) VALUES ('analytics');
+INSERT INTO departament (name) VALUES ('ai');
+
+INSERT INTO employeelevel (name) VALUES ('juniour');
+INSERT INTO employeelevel (name) VALUES ('senior');
+INSERT INTO employeelevel (name) VALUES ('master');
+
+insert into employee (name, departamentId, employeeLevelId) VALUES ('Maxim', 1, 1);
+insert into employee (name, departamentId, employeeLevelId) VALUES ('Victoria', 1, 1);
+insert into employee (name, departamentId, employeeLevelId) VALUES ('Android', 1, 1);
+
+insert into employee (name, departamentId, employeeLevelId) VALUES ('Metallica', 2, 2);
+insert into employee (name, departamentId, employeeLevelId) VALUES ('Mötley Crüe', 2, 2);
+
 ```
 
 
