@@ -12,7 +12,7 @@ This Simple Demo will show:
 #### What you’ll need (linux)
 PostgreSQL server
 
-```java
+```bash
 
 sudo apt-get install postgresql-10 pgadmin3
 
@@ -31,7 +31,7 @@ type postgres
 
 ```
 #### Create database and tables
-```java
+```SQL
 
 su postgres
 createdb testdb
@@ -60,12 +60,12 @@ INSERT INTO employeelevel (name) VALUES ('juniour');
 INSERT INTO employeelevel (name) VALUES ('senior');
 INSERT INTO employeelevel (name) VALUES ('master');
 
-insert into employee (name, departamentId, employeeLevelId) VALUES ('Maxim', 1, 1);
-insert into employee (name, departamentId, employeeLevelId) VALUES ('Victoria', 1, 1);
-insert into employee (name, departamentId, employeeLevelId) VALUES ('Android', 1, 1);
+INSERT INTO employee (name, departamentId, employeeLevelId) VALUES ('Maxim', 1, 1);
+INSERT INTO employee (name, departamentId, employeeLevelId) VALUES ('Victoria', 1, 1);
+INSERT INTO employee (name, departamentId, employeeLevelId) VALUES ('Android', 1, 1);
 
-insert into employee (name, departamentId, employeeLevelId) VALUES ('Metallica', 2, 2);
-insert into employee (name, departamentId, employeeLevelId) VALUES ('Mötley Crüe', 2, 2);
+INSERT INTO employee (name, departamentId, employeeLevelId) VALUES ('Metallica', 2, 2);
+INSERT INTO employee (name, departamentId, employeeLevelId) VALUES ('Mötley Crüe', 2, 2);
 
 ```
 
