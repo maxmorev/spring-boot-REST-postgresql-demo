@@ -16,18 +16,18 @@ PostgreSQL server
 
 sudo apt-get install postgresql-10 pgadmin3
 
-then change config for using pgAdminIII
+#then change config for using pgAdminIII
 file path : /etc/postgresql/10/main/pg_hba.conf
 line you need to change from: 
-local   all             postgres      peer
+local   all    postgres    peer
 to:
-local   all             postgres      trust
+local   all    postgres    trust
 Restart postgreSQL server
 sudo service postgresql restart
 
-then change password for user postgres
+#then change password for user postgres
 passwd postgres
-type postgres
+#type postgres
 
 ```
 #### Create database and tables
