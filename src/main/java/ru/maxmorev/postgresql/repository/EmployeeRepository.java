@@ -16,6 +16,10 @@ public interface EmployeeRepository  extends PagingAndSortingRepository<Employee
 
     Page<Employee> findAll(Pageable pageable);
 
+    Page<Employee> findByDepartamentId(Long departamentId, Pageable pageable);
+
+    long countByDepartamentId(Long departamentId);
+
 
 
 }
