@@ -22,6 +22,8 @@ public class EmployeeController {
 
     private static final Logger log = LoggerFactory.getLogger(EmployeeController.class);
 
+    private static final int COUNT_RECORDS_ON_PAGE = 3;
+
     @Autowired
     EmployeeRepository employeeRepository;
 
@@ -33,7 +35,7 @@ public class EmployeeController {
     {
         EmployeeList employeeList = new EmployeeList();
         Integer pageNumber = employeeList.getPage();
-        employeeList.setPageSize(3);
+        employeeList.setPageSize(EmployeeController.COUNT_RECORDS_ON_PAGE);
         if(page.isPresent()){
             pageNumber = page.get();
             employeeList.setPage(pageNumber);
@@ -41,10 +43,14 @@ public class EmployeeController {
         Iterable<Employee> employeeSet;
         if(departamentId.isPresent()){
             long departId = departamentId.get();
-            employeeList.setCountOfTotalRecords(employeeRepository.countByDepartamentId(departId));
+            long countRecords = employeeRepository.countByDepartamentId(departId);
+            checkForErrors(countRecords, employeeList);
+            employeeList.setCountOfTotalRecords(countRecords);
             employeeSet = employeeRepository.findByDepartamentId(departId, new PageRequest(employeeList.getPage(), employeeList.getPageSize(), Sort.Direction.ASC, "name"));
         }else{
-            employeeList.setCountOfTotalRecords(employeeRepository.count());
+            long countRecords = employeeRepository.count();
+            checkForErrors(countRecords, employeeList);
+            employeeList.setCountOfTotalRecords(countRecords);
             employeeSet = employeeRepository.findAll(new PageRequest(employeeList.getPage(), employeeList.getPageSize(), Sort.Direction.ASC, "id"));
         }
         List<Employee> employeeDataList = ((Page<Employee>) employeeSet).getContent();
@@ -52,6 +58,18 @@ public class EmployeeController {
         employeeList.setEmployeeList( employeeDataList );
         return employeeList;
 
+    }
+
+    private void checkForErrors(Long countRecords,  EmployeeList employeeList ){
+        if(countRecords< (employeeList.getPage()+1)*employeeList.getPageSize()){
+            StringBuilder errorBuilder = new StringBuilder();
+            errorBuilder.append("Illegal arguments: page=");
+            errorBuilder.append(employeeList.getPage());
+            errorBuilder.append(" pageSize=");
+            errorBuilder.append(employeeList.getPageSize());
+            errorBuilder.append(" count records="+countRecords);
+            throw new IllegalArgumentException(errorBuilder.toString());
+        }
     }
 
 }
