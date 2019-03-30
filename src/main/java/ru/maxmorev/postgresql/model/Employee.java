@@ -89,7 +89,7 @@ public class Employee {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, departamentId, employeeLevelId, name);
+        return Objects.hash(id);
     }
 
     @Override
